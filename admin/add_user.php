@@ -4,38 +4,38 @@ session_start();
 if(!isset($_SESSION['admin']))
    header('location:login.php');
 if(isset($_POST['btn-update']))
- {
-$n=$_POST['name'];
-$u=$_POST['username'];
-$p=$_POST['password'];
-$e=$_POST['email'];
-$et=$_POST['etat'];
-$ad=$_POST['adresse'];
-$post=$_POST['postcode'];
-$ph=$_POST['phone_number'];
-$ro=$_POST['role'];
- $q="select * from users where username='$u' or email='$e'";
-$r=mysqli_query($c,$q);
-$t=mysqli_num_rows($r);
-if($t==0)
-{
-if($_FILES['image']['name']!='')
-{
-$img=$_FILES['image']['name'];
-$img1=$_FILES['image']['tmp_name'];
-$ex=explode('.',$img);
-$ex=end($ex);
-$imgn=md5(rand(0,1000).'_'.$img).'.'.$ex;  
-move_uploaded_file($img1,"images/avatar/".$imgn) ;   
-}else
-{
-$img="default.png";
-}
-  $s="insert into users (name,username,password,email,etat,image,adresse,postcode,phone_number,role)values('$n','$u','$p','$e','$et','$imgn','$ad','$post','$ph','$ro')";
-    $r1=mysqli_query($c,$s);         
-    }else
-header("location:add_user.php");        
-}
+            {
+            $n=$_POST['name'];
+            $u=$_POST['username'];
+            $p=$_POST['password'];
+            $e=$_POST['email'];
+            $et=$_POST['etat'];
+            $ad=$_POST['adresse'];
+            $post=$_POST['postcode'];
+            $ph=$_POST['phone_number'];
+            $ro=$_POST['role'];
+            $q="select * from users where username='$u' or email='$e'";
+            $r=mysqli_query($c,$q);
+            $t=mysqli_num_rows($r);
+               if($t==0)
+                   {
+                    if($_FILES['image']['name']!='')
+                      {
+                         $img=$_FILES['image']['name'];
+                         $img1=$_FILES['image']['tmp_name'];
+                         $ex=explode('.',$img);
+                         $ex=end($ex);
+                         $imgn=md5(rand(0,1000).'_'.$img).'.'.$ex;  
+                         move_uploaded_file($img1,"images/avatar/".$imgn) ;   
+                        } else
+                        {
+                        $img="default.png";
+                        }
+                       $s="insert into users (name,username,password,email,etat,image,adresse,postcode,phone_number,role)values('$n','$u','$p','$e','$et','$imgn','$ad','$post','$ph','$ro')";
+                       $r1=mysqli_query($c,$s);         
+                     }else
+                  header("location:add_user.php");        
+              }
     
     
     ?>

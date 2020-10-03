@@ -15,14 +15,14 @@ $msg="SELECT m.*,(
 FROM `messages`as m where (m.r_id='$id' and m.sender_id='$sid') or (m.r_id='$sid' and m.sender_id='$id')";
 $h=mysqli_query($c,$msg);
 if(isset($_POST['envoyer']))
-{
-if(isset($_POST['message']) AND  !empty($_POST['message'])) {
-$message = htmlspecialchars($_POST['message']);
-    $date = date('Y-m-d H:i:s');
-$q="insert into messages(r_id,sender_id,message,date) VALUES ('$id', '{$_SESSION['admin']['id']}','$message','$date')";
-$l=mysqli_query($c,$q);
-}
-}
+   {
+                 if(isset($_POST['message']) AND  !empty($_POST['message'])) {
+                 $message = htmlspecialchars($_POST['message']);
+                 $date = date('Y-m-d H:i:s');
+                 $q="insert into messages(r_id,sender_id,message,date) VALUES ('$id', '{$_SESSION['admin']['id']}','$message','$date')";
+                 $l=mysqli_query($c,$q);
+                 }
+    }
 ?>
 <html>
     <head>

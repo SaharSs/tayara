@@ -2,7 +2,7 @@
 include"config/db.php";
 session_start();
 if(!isset($_SESSION['admin']))
-header('location:login.php');
+   header('location:login.php');
 $q="select * from categories ";
 $s = mysqli_query($c, $q);
 ?>

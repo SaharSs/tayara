@@ -5,27 +5,25 @@ if(!isset($_SESSION['admin']))
 header('location:login.php');
 if(isset($_POST['submit']))
 {
-$d=$_POST['fname'];
-$ra=$_POST['rank'];  
-$q1 = "SELECT * FROM categories where cat='$d'";
-$k=mysqli_query($c,$q1);
-$p=mysqli_num_rows($k);
-if($p>0)
-{
-echo " exist";        
-}else
-{
-    if($ra!=null)
-    {
-$q="INSERT INTO `categories`(cat,p_id) VALUES ('$d','$ra')";
-    }else
-    {
-        $q="INSERT INTO `categories`(cat) VALUES ('$d')";
-    }
- 
-    
-$l=mysqli_query($c,$q); 
-}
+        $d=$_POST['fname'];
+        $ra=$_POST['rank'];  
+        $q1 = "SELECT * FROM categories where cat='$d'";
+        $k=mysqli_query($c,$q1);
+        $p=mysqli_num_rows($k);
+        if($p>0)
+              {
+              echo " exist";        
+              }else
+              {
+         if($ra!=null)
+         {
+         $q="INSERT INTO `categories`(cat,p_id) VALUES ('$d','$ra')";
+         }else
+         {
+         $q="INSERT INTO `categories`(cat) VALUES ('$d')";
+         }
+         $l=mysqli_query($c,$q); 
+         }
 }
 ?>
 <!DOCTYPE html>
@@ -45,28 +43,28 @@ function cate($p_id=null)
 {  
 global $c;     
 if($p_id==null)
-{
-$query = "SELECT * FROM categories where p_id is null ";
-}else
-{
-$query = "SELECT * FROM categories where p_id='$p_id' ";
-}
-$result = mysqli_query($c, $query);
-$p=mysqli_num_rows($result);    
-while($row=mysqli_fetch_assoc($result))
-{
-?>
+     {
+     $query = "SELECT * FROM categories where p_id is null ";
+     }else
+     {
+     $query = "SELECT * FROM categories where p_id='$p_id' ";
+     }
+     $result = mysqli_query($c, $query);
+     $p=mysqli_num_rows($result);    
+     while($row=mysqli_fetch_assoc($result))
+     {
+     ?>
     
-<option  value="<?php echo $row['id']; ?> "><?php echo $row['cat']; ?>  </option>
-<?php    
-cate($row['id']) ;   
-}
+      <option  value="<?php echo $row['id']; ?> "><?php echo $row['cat']; ?>  </option>
+      <?php    
+      cate($row['id']) ;   
+      }
 }
 ?>
 <ul> 
-<?php    
-   echo  cate();
-    ?>
+      <?php    
+      echo  cate();
+      ?>
 </ul>
 </ul>    
 </select>
