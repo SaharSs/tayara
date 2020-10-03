@@ -51,9 +51,9 @@ if (isset($_POST['submit'])) {
                     {
                         global $c;
                         global $pid;
-                        $query = "SELECT * FROM categories where p_id='$p_id'";
-                        $result = mysqli_query($c, $query);
-                        while ($row = mysqli_fetch_assoc($result)) {
+                        $q1 = "SELECT * FROM categories where p_id='$p_id'";
+                        $r1 = mysqli_query($c, $q1);
+                        while ($row = mysqli_fetch_assoc($r1)) {
 
 
                             ?>
@@ -83,3 +83,4 @@ if (isset($_POST['submit'])) {
 <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
+//update
