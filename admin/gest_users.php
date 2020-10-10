@@ -65,7 +65,6 @@ if(!isset($_SESSION['admin']))
         {
         $q="select * from users where   role='user'";    
         }
-            
         $s=mysqli_query($c,$q);
             ?> 
 <table class="table">

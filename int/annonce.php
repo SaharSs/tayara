@@ -15,13 +15,9 @@ $ex=explode('.',$img);
 $ex=end($ex);
 $imgn=md5(rand(0,1000).'_'.$img).'.'.$ex;  
 move_uploaded_file($img1,"images/avatar1/".$imgn) ;   
-$s="insert into annonce (pid,titre,texte_annonce,prix,image,adresse,phone_number)values('$pid','$ti','$an','$prix','$imgn','$ad','$ph')";
+$s="insert into annonce (pid,a_id,titre,texte_annonce,prix,image,adresse,phone_number)values('$pid','{$_SESSION['user']['id']}','$ti','$an','$prix','$imgn','$ad','$ph')";
 $r1=mysqli_query($c,$s);
 }
-
-
-
-
 ?>
 <html>
     <head>
