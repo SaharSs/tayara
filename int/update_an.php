@@ -129,7 +129,7 @@ if($p_id==null)
 <tr>
 <tr>
 <td><br/>
-<button type="submit" name="sumbit"><strong>submit</strong></button>
+<button type="submit" name="submit"><strong>submit</strong></button>
 </td>
 </tr>
 </table>
