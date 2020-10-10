@@ -5,6 +5,7 @@ if(!isset($_SESSION['user']))
 header('location:login_user.php');
 $q="select * from annonce";
 $s=mysqli_query($c,$q);
+
 ?> 
 <html>
     <head>
@@ -31,7 +32,12 @@ $s=mysqli_query($c,$q);
       <td><?php echo $row['pid'];?></td>
       <td><?php echo $row['texte_annonce'];?></td>
       <td><?php echo $row['prix'];?></td>
-      <td><?php echo $row['image'];?></td>
+          <?php
+          $t="select image from image_an " ;
+          $h=mysqli_query($c,$t);
+          $row1=mysqli_fetch_assoc($h);
+    ?>
+      <td><?php echo $row1['image'];?></td>
       <td><?php echo $row['adresse'];?></td>              
       <td><?php echo $row['phone_number'];?></td>                   
              <td>

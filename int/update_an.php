@@ -5,50 +5,50 @@ if(!isset($_SESSION['user']))
 header('location:login_user.php');
 if(isset($_GET['id']))
 {
-$id=$_GET['id'];
-$q="select * from annonce where id=".$id;
-$r=mysqli_query($c,$q);
-while($row2=mysqli_fetch_assoc($r))
-{
-$pid=$row2['pid'];
-$titre=$row2['titre'];
-$texte_annonce=$row2['texte_annonce'];
-$prix=$row2['prix'];
-$adresse =$row2['adresse'];             
-$phone_number=$row2['phone_number']; 
-}
+    $id=$_GET['id'];
+    $q="select * from annonce where id=".$id;
+    $r=mysqli_query($c,$q);
+    while($row2=mysqli_fetch_assoc($r))
+     {
+     $pid=$row2['pid'];
+     $titre=$row2['titre'];
+      $texte_annonce=$row2['texte_annonce'];
+      $prix=$row2['prix'];
+      $adresse =$row2['adresse'];             
+      $phone_number=$row2['phone_number']; 
+      }
 }
 if(isset($_POST['submit']))
 {
-$pi=$_POST['pid'];
-$ti=$_POST['titre'];
-$an=$_POST["texte"];
-$pri=$_POST['prix'];
-$ad=$_POST['adresse'];
-$ph=$_POST['phone_number'];
-if($_FILES['image']['name']!=null)
-{
-$img=$_FILES['image']['name'];
-$img1=$_FILES['image']['tmp_name'];
-$im=explode('.',$img);
-$im=end($im);
-$imgn=md5(rand(0,1000).'_'.$img).'.'.$im;  
-move_uploaded_file($img1,'images/avatar1'.$imgn);
-$d="select image from annonce where id=".$id;
-$m=mysqli_query($c,$d);
-$row1=mysqli_fetch_assoc($m);
- if($row1['image']!=null)
-unlink('images/avatar1/'.$row1['image']);
-$s="UPDATE annonce SET pid='$pi',titre='$ti',texte_annonce='$an',prix='$pri',image='$imgn',adresse='$ad',  phone_number='$ph' WHERE id='$id'";
-$l=mysqli_query($c,$s);    
-}else
-{
-$s="UPDATE annonce SET pid='$pi',titre='$ti',texte_annonce='$an',prix='$pri',adresse='$ad', phone_number='$ph' WHERE id='$id'";
-$l=mysqli_query($c,$s);    
-}  
+        $pi=$_POST['pid'];
+        $ti=$_POST['titre'];
+        $an=$_POST["texte"];
+        $pri=$_POST['prix'];
+        $ad=$_POST['adresse'];
+        $ph=$_POST['phone_number'];
+       if($_FILES['image']['name']!=null)
+          {
+        $img=$_FILES['image']['name'];
+        $img1=$_FILES['image']['tmp_name'];
+        $im=explode('.',$img);
+        $im=end($im);
+        $imgn=md5(rand(0,1000).'_'.$img).'.'.$im;  
+        move_uploaded_file($img1,'images/avatar1'.$imgn);
+        $d="select image from image_an where id=".$id;
+        $m=mysqli_query($c,$d);
+        $row1=mysqli_fetch_assoc($m);
+        if($row1['image']!=null)
+        unlink('images/avatar1/'.$row1['image']);
+        $s="UPDATE annonce SET pid='$pi',titre='$ti',texte_annonce='$an',prix='$pri',image='$imgn',adresse='$ad',  phone_number='$ph' WHERE id='$id'";
+        $l=mysqli_query($c,$s); 
+        $t="UPDATE image_an SET  image='$imgn' WHERE id='$id'";
+        $p=mysqli_query($c,$t);    
+         }else
+         {
+          $s="UPDATE annonce SET pid='$pi',titre='$ti',texte_annonce='$an',prix='$pri',adresse='$ad', phone_number='$ph' WHERE id='$id'";
+          $l=mysqli_query($c,$s);    
+          }  
 } 
-
-
 ?>
 <form method="post" action="" enctype="multipart/form-data">
 <table >
@@ -58,7 +58,6 @@ $l=mysqli_query($c,$s);
 <select name="pid" id="for">
 <option  >choisissez  </option>
 <ul>    
-
 <?php
      
 function cate($p_id=null)
@@ -129,7 +128,7 @@ if($p_id==null)
 <tr>
 <tr>
 <td><br/>
-<button type="submit" name="sumbit"><strong>submit</strong></button>
+<button type="submit" name="submit"><strong>submit</strong></button>
 </td>
 </tr>
 </table>

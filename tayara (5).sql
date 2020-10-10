@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 08 oct. 2020 à 14:43
+-- Généré le :  sam. 10 oct. 2020 à 20:16
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -31,23 +31,24 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `annonce`;
 CREATE TABLE IF NOT EXISTS `annonce` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `a_id` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
   `titre` varchar(30) NOT NULL,
   `texte_annonce` longtext DEFAULT NULL,
   `prix` varchar(30) NOT NULL,
-  `image` varchar(100) NOT NULL,
   `adresse` longtext NOT NULL,
   `phone_number` int(11) NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `a_id` (`a_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `annonce`
 --
 
-INSERT INTO `annonce` (`id`, `pid`, `titre`, `texte_annonce`, `prix`, `image`, `adresse`, `phone_number`, `date`) VALUES
-(1, 2, 'article ', 'jkbkjkljkljhk', '35000DT', '5c7d382c02677cf1171c16ab57d83516.jpg', 'doualy', 1478945, '2020-10-08 16:42:21');
+INSERT INTO `annonce` (`id`, `a_id`, `pid`, `titre`, `texte_annonce`, `prix`, `adresse`, `phone_number`, `date`) VALUES
+(1, 12, 2, 'T-shirt', 'jkbkjkljkljhk', '15000DT', 'doualy', 14785254, '2020-10-10 22:13:57');
 
 -- --------------------------------------------------------
 
@@ -96,6 +97,28 @@ INSERT INTO `categories` (`id`, `p_id`, `cat`, `date`) VALUES
 (15, NULL, 'jhg', '2020-10-01 04:05:56'),
 (16, NULL, 'bgvh', '2020-10-01 04:06:26'),
 (17, 15, 'fd', '2020-10-01 04:29:33');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `image_an`
+--
+
+DROP TABLE IF EXISTS `image_an`;
+CREATE TABLE IF NOT EXISTS `image_an` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `image` varchar(255) NOT NULL,
+  `i_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `i_id` (`i_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `image_an`
+--
+
+INSERT INTO `image_an` (`id`, `image`, `i_id`) VALUES
+(1, '401307a5267fca9ddaa2569b05f753d8.jpg', 12);
 
 -- --------------------------------------------------------
 
