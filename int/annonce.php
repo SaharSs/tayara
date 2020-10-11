@@ -1,6 +1,8 @@
 <?php
 include"../admin/config/db.php";
 session_start();
+if (!isset($_SESSION['user']))
+    header('location:login_user.php');
 if(isset($_POST['annonce']))
 {
 $pid=$_POST['pid'];
