@@ -34,11 +34,7 @@ if(isset($_POST['submit']))
         $im=end($im);
         $imgn=md5(rand(0,1000).'_'.$img).'.'.$im;  
         move_uploaded_file($img1,'images/avatar1'.$imgn);
-        $d="select image from image_an where id=".$id;
-        $m=mysqli_query($c,$d);
-        $row1=mysqli_fetch_assoc($m);
-        if($row1['image']!=null)
-        unlink('images/avatar1/'.$row1['image']);
+       
         $s="UPDATE annonce SET pid='$pi',titre='$ti',texte_annonce='$an',prix='$pri',image='$imgn',adresse='$ad',  phone_number='$ph' WHERE id='$id'";
         $l=mysqli_query($c,$s); 
         $t="UPDATE image_an SET  image='$imgn' WHERE id='$id'";

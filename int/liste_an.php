@@ -3,7 +3,7 @@ include"../admin/config/db.php";
 session_start();
 if(!isset($_SESSION['user']))
 header('location:login_user.php');
-$q="select * from annonce";
+$q="select * from annonce a_id='{$_SESSION['user']['id']}'";
 $s=mysqli_query($c,$q);
 
 ?> 
@@ -33,7 +33,7 @@ $s=mysqli_query($c,$q);
       <td><?php echo $row['texte_annonce'];?></td>
       <td><?php echo $row['prix'];?></td>
           <?php
-          $t="select image from image_an " ;
+          $t="select image from image_an where i_id='{$row['id']}' " ;
           $h=mysqli_query($c,$t);
           $row1=mysqli_fetch_assoc($h);
     ?>
