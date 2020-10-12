@@ -43,12 +43,7 @@ while ($row2 = mysqli_fetch_assoc($r)) {
         $s = "UPDATE annonce SET pid='$pi',titre='$ti',texte_annonce='$an',prix='$pri',adresse='$ad', phone_number='$ph' WHERE id='$id'";
         $l = mysqli_query($c, $s);
     }
-}
-    
-    
-    
-    
-?>
+} ?>
 <form method="post" action="" enctype="multipart/form-data">
     <table>
         <tr>
