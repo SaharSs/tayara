@@ -1,13 +1,15 @@
 <?php
 include "../admin/config/db.php";
 session_start();
-if (!isset($_SESSION['user']))
-    header('location:login_user.php');
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $q = "select * from annonce where id=" . $id;
-    $r = mysqli_query($c, $q);
-    while ($row2 = mysqli_fetch_assoc($r)) {
+if(!isset($_SESSION['user']))
+header('location:login_user.php');
+if(isset($_GET['id']))
+{
+$id=$_GET['id'];
+$q="select * from annonce where id=".$id;
+$r=mysqli_query($c,$q);
+
+while ($row2 = mysqli_fetch_assoc($r)) {
         $pid = $row2['pid'];
         $titre = $row2['titre'];
         $texte_annonce = $row2['texte_annonce'];
@@ -16,14 +18,16 @@ if (isset($_GET['id'])) {
         $phone_number = $row2['phone_number'];
     }
 }
-if (isset($_POST['submit'])) {
+    
+   if (isset($_POST['submit']))
+    {
     $pi = $_POST['pid'];
     $ti = $_POST['titre'];
     $an = $_POST["texte"];
     $pri = $_POST['prix'];
     $ad = $_POST['adresse'];
     $ph = $_POST['phone_number'];
-    if ($_FILES['image']['name'] != null) {
+     if ($_FILES['image']['name'] != null) {
         $img = $_FILES['image']['name'];
         $img1 = $_FILES['image']['tmp_name'];
         $im = explode('.', $img);
@@ -40,6 +44,10 @@ if (isset($_POST['submit'])) {
         $l = mysqli_query($c, $s);
     }
 }
+    
+    
+    
+    
 ?>
 <form method="post" action="" enctype="multipart/form-data">
     <table>
