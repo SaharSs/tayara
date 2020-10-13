@@ -17,11 +17,12 @@ $ex=explode('.',$img);
 $ex=end($ex);
 $imgn=md5(rand(0,1000).'_'.$img).'.'.$ex;  
 move_uploaded_file($img1,"images/avatar1/".$imgn) ;   
-$s="insert into annonce (pid,a_id,titre,texte_annonce,prix,adresse,phone_number)values('$pid','{$_SESSION['user']['id']}','$ti','$an','$prix','$ad','$ph')";
+$s="insert into annonce (pid,a_id,titre,texte_annonce,prix,adresse,phone_number,cas)values('$pid','{$_SESSION['user']['id']}','$ti','$an','$prix','$ad','$ph',1)";
 $r1=mysqli_query($c,$s);
 $annonce_id = mysqli_insert_id($c);
-$t="insert into image_an  (image,i_id) values ('$imgn','$annonce_id')";
-$r2=mysqli_query($c,$t);    
+$t="insert into image_an (image,i_id) values ('$imgn','$annonce_id')";
+$r2=mysqli_query($c,$t);
+    
 }
 ?>
 <html>

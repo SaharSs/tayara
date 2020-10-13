@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 13 oct. 2020 à 11:22
+-- Généré le :  mar. 13 oct. 2020 à 21:35
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -39,20 +39,17 @@ CREATE TABLE IF NOT EXISTS `annonce` (
   `adresse` varchar(100) NOT NULL,
   `phone_number` int(11) NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp(),
+  `cas` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_a_id_id` (`a_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `annonce`
 --
 
-INSERT INTO `annonce` (`id`, `a_id`, `pid`, `titre`, `texte_annonce`, `prix`, `adresse`, `phone_number`, `date`) VALUES
-(2, 1, 2, 'T', 'jkbkjkljkljhk', 30, 'doualy', 147852, '2020-10-13 06:00:58'),
-(3, 1, 6, 'modulation', 'jkbkjkljkljhk', 15000, 'doualy', 14785254, '2020-10-13 11:08:53'),
-(4, 1, 6, 'T-shirt', 'jkbkjkljkljhkhjknk,klk,', 30, 'doualy', 147852, '2020-10-13 11:09:38'),
-(5, 2, 6, 'modu', 'jkbkjkljkljhkhjknk,klk,', 30, 'doualy', 147896, '2020-10-13 13:05:30'),
-(6, 2, 18, 'mod', 'jkbkjkl', 35000, 'doualy', 1456, '2020-10-13 13:06:00');
+INSERT INTO `annonce` (`id`, `a_id`, `pid`, `titre`, `texte_annonce`, `prix`, `adresse`, `phone_number`, `date`, `cas`) VALUES
+(1, 1, 6, 'T-shirt', 'jkbkjkljkljhkhjknk,klk,', 15000, 'doualy', 147896, '2020-10-13 23:26:33', 0);
 
 -- --------------------------------------------------------
 
@@ -116,17 +113,14 @@ CREATE TABLE IF NOT EXISTS `image_an` (
   `i_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_image_an_i_id` (`i_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `image_an`
 --
 
 INSERT INTO `image_an` (`id`, `image`, `i_id`) VALUES
-(21, '7439f479109bcc5e06407808ed321eda.jpg', 3),
-(22, '790e0ae160a37062d2061c44cf18d079.jpg', 4),
-(23, 'bf180119597ca155a4f32b8586ddd44f.jpg', 5),
-(24, '62bb154b9d63f84be1276a4f94f6c0dc.jpg', 6);
+(30, '39b0936a6415952a729a7d9a8fedb415.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -194,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `phone_number` int(11) NOT NULL,
   `role` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `users`
@@ -202,7 +196,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `etat`, `image`, `adresse`, `postcode`, `phone_number`, `role`) VALUES
 (1, 'kl', 'kl', 'kl', 'salk@gmail.com', 'v', 'default.png', 'dualy', 2100, 123456, 'user'),
-(2, 'ml', 'ml', 'ml', 'sd@gmail.com', 'v', '', 'doualy', 2100, 56486556, 'user');
+(2, 'ml', 'ml', 'ml', 'sd@gmail.com', 'v', '', 'doualy', 2100, 56486556, 'user'),
+(3, 'jh', 'jh', 'jh', 'ds@gmail.com', 'v', '', 'doualy', 2510, 513353, 'webmaster');
 
 -- --------------------------------------------------------
 
