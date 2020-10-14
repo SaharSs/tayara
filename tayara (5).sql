@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 14 oct. 2020 à 14:52
+-- Généré le :  mer. 14 oct. 2020 à 17:56
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `annonce` (
 --
 
 INSERT INTO `annonce` (`id`, `a_id`, `pid`, `titre`, `texte_annonce`, `prix`, `adresse`, `phone_number`, `date`, `cas`) VALUES
-(22, 1, 18, 'T-shirt', 'jkbkjkljkljhk', 30, 'doualy', 147896, '2020-10-14 16:51:15', 0),
+(22, 1, 18, 'T-shirt', 'jkbkjkljkljhk', 50, 'doualy', 147896, '2020-10-14 16:51:15', 0),
 (23, 1, 2, 'modulation', 'jkbkjkljkljhk', 30, 'doualy', 1478945, '2020-10-14 16:51:35', 1);
 
 -- --------------------------------------------------------
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `image_an` (
   `i_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_image_an_i_id` (`i_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `image_an`
@@ -122,7 +122,8 @@ CREATE TABLE IF NOT EXISTS `image_an` (
 
 INSERT INTO `image_an` (`id`, `image`, `i_id`) VALUES
 (51, 'f104dc3cfd1c554322f13f05efb6b826.jpg', 22),
-(52, '58ad674a931b88a2307be96f8ae98a29.jpg', 23);
+(52, '58ad674a931b88a2307be96f8ae98a29.jpg', 23),
+(53, '7f01cc6eef067198b415908d5efdc286.jpg', 23);
 
 -- --------------------------------------------------------
 
