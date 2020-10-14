@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 13 oct. 2020 à 21:35
+-- Généré le :  mer. 14 oct. 2020 à 01:18
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -42,14 +42,16 @@ CREATE TABLE IF NOT EXISTS `annonce` (
   `cas` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_a_id_id` (`a_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `annonce`
 --
 
 INSERT INTO `annonce` (`id`, `a_id`, `pid`, `titre`, `texte_annonce`, `prix`, `adresse`, `phone_number`, `date`, `cas`) VALUES
-(1, 1, 6, 'T-shirt', 'jkbkjkljkljhkhjknk,klk,', 15000, 'doualy', 147896, '2020-10-13 23:26:33', 0);
+(1, 1, 6, 'T-shirt', 'jkbkjkljkljhkhjknk,klk,', 15000, 'doualy', 147896, '2020-10-13 23:26:33', 1),
+(2, 1, 6, 'chemise', 'sdsddaza', 15000, 'doualy', 1478945, '2020-10-14 00:29:26', 0),
+(3, 1, 7, 'pan', 'cbvxqsgqsvj', 30, 'doualy', 14785254, '2020-10-14 01:08:22', 0);
 
 -- --------------------------------------------------------
 
@@ -113,14 +115,16 @@ CREATE TABLE IF NOT EXISTS `image_an` (
   `i_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_image_an_i_id` (`i_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `image_an`
 --
 
 INSERT INTO `image_an` (`id`, `image`, `i_id`) VALUES
-(30, '39b0936a6415952a729a7d9a8fedb415.jpg', 1);
+(30, '39b0936a6415952a729a7d9a8fedb415.jpg', 1),
+(31, 'bdfaf3b1abe194f747f0bd2014beabed.jpg', 2),
+(32, '212a34975cbe5eddff0481176d884be8.jpg', 3);
 
 -- --------------------------------------------------------
 
