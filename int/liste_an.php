@@ -26,18 +26,11 @@ while ($row2 = mysqli_fetch_assoc($r1)) {
     }
     }
 
-$q = "select * from annonce where a_id='{$_SESSION['user']['id']}'";
+$q = "select * from annonce where a_id='{$_SESSION['user']['id']}' and cas=1";
 $s = mysqli_query($c, $q);
 $count = mysqli_num_rows($s);
 ?>
 <html>
-     
-   
-    
-    
-    
-
-
 <head>
     <link rel="stylesheet" href="../admin/css/bootstrap.min.css">
     <link rel="stylesheet" href="../admin/css/all.min.css">
@@ -82,44 +75,36 @@ $count = mysqli_num_rows($s);
                 <td><?php echo $row['adresse']; ?></td>
                 <td><?php echo $row['phone_number']; ?></td>
                 <td>
-                <form method="post" action="">
-<button type="submit" name="an"><strong>désactivé</strong></button>
-    </form>
-          <?php          
-  if(isset($_POST['an']))
-            {
-         if($row['cas']==1)
-         {
-            
-         $t="UPDATE annonce SET cas=0 where id='{$row['id']}'";
-$r2=mysqli_query($c,$t);
-         }
-         }
-                                               ?>
-             
-                    
-                </td>
-                <td>
+                <?php
+               echo "<a href='app.php?id=".$row['id']."&aid=".$row['cas']."'>désactive</a>"
+               ?>
+
+        
+                                              
+</td>
+<td>
                     <a href="update_an.php?id=<?= $row['id']; ?>"><i class="fas fa-edit"></i></a>
                     <a href="supp_an.php?id=<?= $row['id']; ?>"><i class="fas fa-trash"></i></a>
 
                 </td>
             </tr>
-            <?php
-        }
-    }
+     <?php    
+          
+                                              }
+}
+  
     ?>
     </tbody>
 </table>
     <h4>vendues</h4>
     <?php
-
-         
-        
-$q1 = "select * from annonce where a_id='{$_SESSION['user']['id']}' and cas=0  ";
+    $q1 = "select * from annonce where a_id='{$_SESSION['user']['id']}'  and cas=0  ";
 $s1 = mysqli_query($c, $q1);
 $count = mysqli_num_rows($s1);
+
 ?>
+<html>
+    <body>
     <table class="table">
     <thead>
     <tr>
@@ -135,27 +120,27 @@ $count = mysqli_num_rows($s1);
     </thead>
     <tbody>
     <?php if ($count > 0) {
-        while ($row = mysqli_fetch_assoc($s1)) {?>
+        while ($row1 = mysqli_fetch_assoc($s1)) {?>
             <tr>
-                <th scope="row"><?php echo $row['id']; ?></th>
-                <td><?php echo $row['pid']; ?></td>
-                 <td><?php echo $row['titre']; ?></td>
-                <td><?php echo $row['texte_annonce']; ?></td>
-                <td><?php echo $row['prix']; ?></td>
+                <th scope="row"><?php echo $row1['id']; ?></th>
+                <td><?php echo $row1['pid']; ?></td>
+                 <td><?php echo $row1['titre']; ?></td>
+                <td><?php echo $row1['texte_annonce']; ?></td>
+                <td><?php echo $row1['prix']; ?></td>
                 <?php
-                $t = "select image from image_an where i_id='{$row['id']}' ";
+                $t = "select image from image_an where i_id='{$row1['id']}' ";
                 $h = mysqli_query($c, $t);
-                $row1 = mysqli_fetch_assoc($h);
+                $row2 = mysqli_fetch_assoc($h);
                 ?>
-                <td><?php echo $row1['image']; ?></td>
-                <td><?php echo $row['adresse']; ?></td>
-                <td><?php echo $row['phone_number']; ?></td>
+                <td><?php echo $row2['image']; ?></td>
+                <td><?php echo $row1['adresse']; ?></td>
+                <td><?php echo $row1['phone_number']; ?></td>
     
                 
                 
                 <td>
-                    <a href="update_an.php?id=<?= $row['id']; ?>"><i class="fas fa-edit"></i></a>
-                    <a href="supp_an.php?id=<?= $row['id']; ?>"><i class="fas fa-trash"></i></a>
+                    <a href="update_an.php?id=<?= $row1['id']; ?>"><i class="fas fa-edit"></i></a>
+                    <a href="supp_an.php?id=<?= $row1['id']; ?>"><i class="fas fa-trash"></i></a>
 
                 </td>
             </tr>
@@ -173,4 +158,4 @@ $count = mysqli_num_rows($s1);
 <script src="../admin/js/bootstrap.min.js"></script>
 </body>
 </html>
-        
+   
