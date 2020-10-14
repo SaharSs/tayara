@@ -5,6 +5,7 @@ session_start();
 if (!isset($_SESSION['user']))
     header('location:login_user.php');
 ?>
+
 <html>
     <head>
     <link rel="stylesheet" href="../admin/css/bootstrap.min.css">
@@ -20,8 +21,15 @@ if (!isset($_SESSION['user']))
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <div  class="container">
+  
     <ul  class="navbar-nav ml-auto">
-       
+        <li>
+       <form method="POST" action=""> 
+     Recherchez  
+    <input type="text" name="recherche">
+     <input type="submit" value="recherche"> 
+     </form>
+        </li>    
       <li class="nav-item active">
         <a class="nav-link" href="#">acceuil </a>
       </li>
@@ -46,13 +54,36 @@ if (!isset($_SESSION['user']))
      </div>
   </div>
 </nav>
+        <?php
+if(isset($_POST['recherche']) AND !empty($_POST['recherche'])) {
+    $m = htmlspecialchars($_POST['recherche']);
+    $q = "SELECT * FROM annonce WHERE titre LIKE '%".$m."%' && a_id={$_SESSION['user']['id']} ";
+     $r=mysqli_query($c,$q); 
+         while( $row = mysqli_fetch_assoc($r)){
+             ?>
+<ul>
+<li><?php echo $row['prix'];?></li>
+</ul>
+
+
       <?php
+             //hathi mani nhotha fi fonction w najem nadaha bech mayjich l prog twil yasser
+          $q1="select image from image_an where i_id=".$row['id'];
+      $r1=mysqli_query($c,$q1);
+
+while ($row2 = mysqli_fetch_assoc($r1)) {
+
+                 echo "<img src='images/avatar1/".$row2['image']."' width='50' style='border-radius:50%'/>"; 
+    }
+    }
+    }
                $q1="select * from image_an ";
                $r1=mysqli_query($c,$q1);
                
               while ($row2 = mysqli_fetch_assoc($r1)) {
                    
-                  echo "<br><center><img src='images/avatar1/".$row2['image']."' width='100' style='border-radius:50%'/></center>";    
+                  echo "<br><center><img src='images/avatar1/".$row2['image']."' width='100' style='border-radius:50%'/></center>"; 
+              
             
             $q = "SELECT * FROM annonce where id=".$row2['i_id'];
             $r=mysqli_query($c,$q);                       
@@ -73,6 +104,7 @@ if (!isset($_SESSION['user']))
                     }
                 
             }
+        
                 ?>
                <script src="../admin/js/jquery.min.js"></script>
         <script src="../admin/js/bootstrap.min.js"></script>
