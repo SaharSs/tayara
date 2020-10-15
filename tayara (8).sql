@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 10 oct. 2020 à 20:16
+-- Généré le :  mar. 13 oct. 2020 à 11:22
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -33,22 +33,26 @@ CREATE TABLE IF NOT EXISTS `annonce` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `a_id` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
-  `titre` varchar(30) NOT NULL,
-  `texte_annonce` longtext DEFAULT NULL,
-  `prix` varchar(30) NOT NULL,
-  `adresse` longtext NOT NULL,
+  `titre` varchar(100) NOT NULL,
+  `texte_annonce` varchar(100) NOT NULL,
+  `prix` int(11) NOT NULL,
+  `adresse` varchar(100) NOT NULL,
   `phone_number` int(11) NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
-  KEY `a_id` (`a_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  KEY `fk_a_id_id` (`a_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `annonce`
 --
 
 INSERT INTO `annonce` (`id`, `a_id`, `pid`, `titre`, `texte_annonce`, `prix`, `adresse`, `phone_number`, `date`) VALUES
-(1, 12, 2, 'T-shirt', 'jkbkjkljkljhk', '15000DT', 'doualy', 14785254, '2020-10-10 22:13:57');
+(2, 1, 2, 'T', 'jkbkjkljkljhk', 30, 'doualy', 147852, '2020-10-13 06:00:58'),
+(3, 1, 6, 'modulation', 'jkbkjkljkljhk', 15000, 'doualy', 14785254, '2020-10-13 11:08:53'),
+(4, 1, 6, 'T-shirt', 'jkbkjkljkljhkhjknk,klk,', 30, 'doualy', 147852, '2020-10-13 11:09:38'),
+(5, 2, 6, 'modu', 'jkbkjkljkljhkhjknk,klk,', 30, 'doualy', 147896, '2020-10-13 13:05:30'),
+(6, 2, 18, 'mod', 'jkbkjkl', 35000, 'doualy', 1456, '2020-10-13 13:06:00');
 
 -- --------------------------------------------------------
 
@@ -80,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `date` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `p_id` (`p_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `categories`
@@ -96,7 +100,8 @@ INSERT INTO `categories` (`id`, `p_id`, `cat`, `date`) VALUES
 (13, 4, 'gf', '2020-10-01 04:03:46'),
 (15, NULL, 'jhg', '2020-10-01 04:05:56'),
 (16, NULL, 'bgvh', '2020-10-01 04:06:26'),
-(17, 15, 'fd', '2020-10-01 04:29:33');
+(17, 15, 'fd', '2020-10-01 04:29:33'),
+(18, 6, 'def', '2020-10-12 15:03:17');
 
 -- --------------------------------------------------------
 
@@ -110,15 +115,18 @@ CREATE TABLE IF NOT EXISTS `image_an` (
   `image` varchar(255) NOT NULL,
   `i_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `i_id` (`i_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  KEY `fk_image_an_i_id` (`i_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `image_an`
 --
 
 INSERT INTO `image_an` (`id`, `image`, `i_id`) VALUES
-(1, '401307a5267fca9ddaa2569b05f753d8.jpg', 12);
+(21, '7439f479109bcc5e06407808ed321eda.jpg', 3),
+(22, '790e0ae160a37062d2061c44cf18d079.jpg', 4),
+(23, 'bf180119597ca155a4f32b8586ddd44f.jpg', 5),
+(24, '62bb154b9d63f84be1276a4f94f6c0dc.jpg', 6);
 
 -- --------------------------------------------------------
 
@@ -175,35 +183,26 @@ INSERT INTO `messages` (`id`, `message`, `r_id`, `sender_id`, `date`) VALUES
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
-  `username` varchar(250) NOT NULL,
-  `password` varchar(200) NOT NULL,
-  `email` varchar(200) NOT NULL,
-  `etat` varchar(200) NOT NULL,
-  `image` varchar(200) DEFAULT 'default.png',
-  `adresse` longtext NOT NULL,
-  `postcode` varchar(20) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `etat` varchar(50) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `adresse` varchar(100) NOT NULL,
+  `postcode` int(11) NOT NULL,
   `phone_number` int(11) NOT NULL,
-  `role` varchar(20) NOT NULL DEFAULT 'user',
+  `role` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `etat`, `image`, `adresse`, `postcode`, `phone_number`, `role`) VALUES
-(1, 'test', 'test', 'test', 'sq@gmail.com', 'v', 'default.png', 'gafsa', '2100', 14578, 'webmaster'),
-(2, 'sa', 'hg', 'sa', 'kh981@gmail.com', ' v', '6f5e69ce64397db43f7c37214270d6f1.jpg', 'doualy', '2143', 351354, 'admin'),
-(5, 'fd', 'fd', 'fd', 'sa93@Gmail.com', ' v', 'ccf310634c9f3ed5c8d5f38333b00b5e.', 'doualy', '2143', 565486486, 'admin'),
-(6, 'sx', 'sx', 'sx', 'jkk@bjbk.com', ' v', 'f001e03e4b74876d805d95777a826a98.jpg', 'doualy', '2143', 216464, 'admin'),
-(7, 'lk', 'lk', 'lk', 'kh11451@gmail.com', ' v', '26eca63fffee01ea87a34e2a76c18008.jpg', 'doualy', '2143', 56488877, 'admin'),
-(8, 'jh', 'jh', 'jh', 'kh1546511@gmail.com', ' v', '377dd76563fa3b6c0374ef8bf444935c.jpg', 'doualy', '2143', 56448664, 'admin'),
-(9, 'sc', 'sc', 'sc', 'sq646@wxkls.com', ' v', 'ee93131fafa4ac04d536df63dbe5e381.jpg', 'doualy', '2143', 5346566, 'admin'),
-(10, 'nb', 'nb', 'nb', 'sq15444@wxkls.com', ' v', '00f13ccd77669fcc1ace385477cc6d07.jpg', 'doualy', '2143', 545656, 'admin'),
-(11, 'vc', 'vc', 'vc', 'kh14511@gmail.com', ' v', '7f87c609ef6431e3638afea2e2e15892.jpg', 'doualy', '2143', 5465664, 'admin'),
-(12, 'kl', 'kl', 'kl', 'sq14@wxkls.com', 'v', '7f87c609ef6431e3638afea2e2e15892.jpg', 'doualy', '2143', 5589898, 'user'),
-(13, 'ds', 'ds', 'ds', 'jk@bjbk.com', 'v', 'acdc205d594e2aadf84afdfd3c2499e7.gif', 'doualy', '2143', 123584, 'user');
+(1, 'kl', 'kl', 'kl', 'salk@gmail.com', 'v', 'default.png', 'dualy', 2100, 123456, 'user'),
+(2, 'ml', 'ml', 'ml', 'sd@gmail.com', 'v', '', 'doualy', 2100, 56486556, 'user');
 
 -- --------------------------------------------------------
 
@@ -228,10 +227,22 @@ CREATE TABLE IF NOT EXISTS `voitures` (
 --
 
 --
+-- Contraintes pour la table `annonce`
+--
+ALTER TABLE `annonce`
+  ADD CONSTRAINT `fk_a_id_id` FOREIGN KEY (`a_id`) REFERENCES `users` (`id`);
+
+--
 -- Contraintes pour la table `categories`
 --
 ALTER TABLE `categories`
   ADD CONSTRAINT `fk_p_id` FOREIGN KEY (`p_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `image_an`
+--
+ALTER TABLE `image_an`
+  ADD CONSTRAINT `fk_image_an_i_id` FOREIGN KEY (`i_id`) REFERENCES `annonce` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
