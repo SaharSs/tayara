@@ -57,43 +57,42 @@ if (!isset($_SESSION['user']))
         <?php
 if(isset($_POST['recherche']) AND !empty($_POST['recherche'])) {
     $m = htmlspecialchars($_POST['recherche']);
-    $q = "SELECT * FROM annonce WHERE titre LIKE '%".$m."%' && a_id={$_SESSION['user']['id']} ";
+    $q = "SELECT * FROM annonce WHERE titre LIKE '%".$m."%' && a_id={$_SESSION['user']['id']}  && cas=1";
      $r=mysqli_query($c,$q); 
+   
+        ?>
+          <a href="acceuil.php">annuler</a>
+        <?php
+        
+     echo "resultat de la recherche:";
          while( $row = mysqli_fetch_assoc($r)){
-             ?>
-<ul>
-<li><?php echo $row['prix'];?></li>
-</ul>
+            
+ echo $row['titre'];
 
 
-      <?php
-             //hathi mani nhotha fi fonction w najem nadaha bech mayjich l prog twil yasser
-          $q1="select image from image_an where i_id=".$row['id'];
-      $r1=mysqli_query($c,$q1);
 
-while ($row2 = mysqli_fetch_assoc($r1)) {
-
-                 echo "<img src='images/avatar1/".$row2['image']."' width='50' style='border-radius:50%'/>"; 
+      
     }
     }
-    }
-               $q1="select * from image_an ";
+        
+        if(isset($_POST['recherche']) AND !empty($_POST['recherche'])) {
+    $m = htmlspecialchars($_POST['recherche']);
+    $q = "SELECT * FROM annonce WHERE titre LIKE '%".$m."%' && a_id={$_SESSION['user']['id']} && cas=1 ";
+        
+            $r=mysqli_query($c,$q);                       
+            while($row = mysqli_fetch_assoc($r))
+                
+              {
+
+
+               $q1="select * from image_an where i_id='{$row['id']}' ";
                $r1=mysqli_query($c,$q1);
                
               while ($row2 = mysqli_fetch_assoc($r1)) {
                    
                   echo "<br><center><img src='images/avatar1/".$row2['image']."' width='100' style='border-radius:50%'/></center>"; 
               
-            
-            $q = "SELECT * FROM annonce where id=".$row2['i_id'];
-            $r=mysqli_query($c,$q);                       
-            while($row = mysqli_fetch_assoc($r))
-                
-              {
-
-               echo "<center>".$row['prix']. "<center>"; 
-             
-        
+           echo "<center>".$row['prix']. "<center>";
         
                     
                 ?>
@@ -104,8 +103,43 @@ while ($row2 = mysqli_fetch_assoc($r1)) {
                     }
                 
             }
+        }else
+        {
+                ?>
+        
+        
+        
+        <?php
+          $q = "SELECT * FROM annonce where cas=1 ";
+            $r=mysqli_query($c,$q);                       
+            while($row = mysqli_fetch_assoc($r))
+                
+              {
+
+
+               $q1="select * from image_an where i_id='{$row['id']}' ";
+               $r1=mysqli_query($c,$q1);
+               
+              while ($row2 = mysqli_fetch_assoc($r1)) {
+                   
+                  echo "<br><center><img src='images/avatar1/".$row2['image']."' width='100' style='border-radius:50%'/></center>"; 
+              
+           echo "<center>".$row['prix']. "<center>";
+        
+                    
+                ?>
+                 <a href="voir.php?id=<?= $row['id']?>">voir</a>
+        
+        <?php
+                    
+                    }
+                
+            }
+        }
         
                 ?>
+        
+            
                <script src="../admin/js/jquery.min.js"></script>
         <script src="../admin/js/bootstrap.min.js"></script>
     </body>

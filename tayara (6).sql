@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 14 oct. 2020 à 17:56
+-- Généré le :  jeu. 15 oct. 2020 à 04:02
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `annonce` (
   `cas` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_a_id_id` (`a_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `annonce`
@@ -50,7 +50,9 @@ CREATE TABLE IF NOT EXISTS `annonce` (
 
 INSERT INTO `annonce` (`id`, `a_id`, `pid`, `titre`, `texte_annonce`, `prix`, `adresse`, `phone_number`, `date`, `cas`) VALUES
 (22, 1, 18, 'T-shirt', 'jkbkjkljkljhk', 50, 'doualy', 147896, '2020-10-14 16:51:15', 0),
-(23, 1, 2, 'modulation', 'jkbkjkljkljhk', 30, 'doualy', 1478945, '2020-10-14 16:51:35', 1);
+(23, 1, 2, 'modulation', 'jkbkjkljkljhk', 30, 'doualy', 1478945, '2020-10-14 16:51:35', 1),
+(24, 1, 2, 'modu', 'jkbkjkljkljhk', 30, 'doualy', 14785254, '2020-10-15 05:29:46', 1),
+(25, 1, 3, 'ty', 'jkbkjkljkljhk', 30, 'doualy', 14789, '2020-10-15 05:30:32', 1);
 
 -- --------------------------------------------------------
 
@@ -114,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `image_an` (
   `i_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_image_an_i_id` (`i_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `image_an`
@@ -123,7 +125,9 @@ CREATE TABLE IF NOT EXISTS `image_an` (
 INSERT INTO `image_an` (`id`, `image`, `i_id`) VALUES
 (51, 'f104dc3cfd1c554322f13f05efb6b826.jpg', 22),
 (52, '58ad674a931b88a2307be96f8ae98a29.jpg', 23),
-(53, '7f01cc6eef067198b415908d5efdc286.jpg', 23);
+(53, '7f01cc6eef067198b415908d5efdc286.jpg', 23),
+(54, '066c5e3ca1bc00c73b53039c7fa9ef01.jpg', 24),
+(55, 'e77686cdd76008a179da72c1dc21370e.jpg', 25);
 
 -- --------------------------------------------------------
 
@@ -156,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `date` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `FK_SENDER_ID` (`sender_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `messages`
@@ -165,11 +169,13 @@ CREATE TABLE IF NOT EXISTS `messages` (
 INSERT INTO `messages` (`id`, `message`, `r_id`, `sender_id`, `date`) VALUES
 (1, 'bonjour', 11, 13, '2020-09-14 11:08:07'),
 (2, 'cv', 11, 13, '2020-09-14 11:09:04'),
+(12, 'hi', 3, 1, '2020-10-14 21:33:35'),
 (5, 'ahla', 13, 11, '2020-09-14 11:14:26'),
 (6, 'bien', 12, 11, '2020-09-14 11:15:11'),
 (7, 'kiol', 13, 10, '2020-09-14 11:27:07'),
 (8, 'hi', 10, 13, '2020-09-14 11:31:23'),
-(9, 'hi', 12, 10, '2020-09-14 11:35:00');
+(9, 'hi', 12, 10, '2020-09-14 11:35:00'),
+(13, 'cv\r\n', 1, 3, '2020-10-14 21:35:52');
 
 -- --------------------------------------------------------
 
