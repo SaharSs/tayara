@@ -65,8 +65,50 @@ if (!isset($_SESSION['user']))
         echo $row['phone_number']."<br>";
          }
         }
+        $q="select * from users where role='user' && id<>'{$_SESSION['user']['id']}'";
+$s=mysqli_query($c,$q);
+
+if(isset($_POST['envoyer']))
+{
+
+  if(isset($_POST['message']) && !empty($_POST['message'])) {
+                $u=$_POST['utl'];   
+                $m=$_POST['message'];
+                 $date = date('Y-m-d H:i:s');
+                 $q="insert into messages(r_id,sender_id,message,date) VALUES ('$u', '{$_SESSION['user']['id']}','$m','$date')";
+                 $l=mysqli_query($c,$q);
+                 }    
+}
+
         
         ?>
+         <form  action="" method="post">
+     
+<label for="na">utilisateurs</label>
+
+<select name="utl"  id="na">
+<?php    
+    while($row=mysqli_fetch_assoc($s))
+{
+  ?>
+    <option value='<?php   echo $row['id'];?>'><?php   echo $row['name'];?></option>
+            <?php
+ 
+}
+
+?>
+    
+</select><br>
+
+  
+         <label>message:</label>
+         <br /><br />
+         <textarea placeholder="Votre message" name="message"></textarea>
+         <br /><br />
+        <input type="submit"  name="envoyer" />
+        
+      </form>
+
         
            <script src="../admin/js/jquery.min.js"></script>
         <script src="../admin/js/bootstrap.min.js"></script>
