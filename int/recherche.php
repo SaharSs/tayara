@@ -18,9 +18,9 @@ header('location:login_user.php');
 
          
       $q1="select image from image_an where i_id=".$row['id'];
-      $r1=mysqli_query($c,$q);
+      $r1=mysqli_query($c,$q1);
 
-while ($row2 = mysqli_fetch_assoc($r)) {
+while ($row2 = mysqli_fetch_assoc($r1)) {
 
                  echo "<img src='images/avatar1/".$row2['image']."' width='50' style='border-radius:50%'/>"; 
     }
