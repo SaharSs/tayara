@@ -104,13 +104,13 @@ while ($row2 = mysqli_fetch_assoc($r)) {
                 <label id="i">image</label><br>
             <?php    
                 $q="select * from image_an where i_id=".$id;
-$r=mysqli_query($c,$q);
+                $r=mysqli_query($c,$q);
 
-while ($row2 = mysqli_fetch_assoc($r)) {
+                 while ($row2 = mysqli_fetch_assoc($r)) {
 
                  echo "<img src='images/avatar1/".$row2['image']."' width='50' style='border-radius:50%'/><a href='deleteimg.php?id=".$row2['id']."&aid=".$id."'>supprimer image</a><br>"; 
-}
-     ?>
+                   }
+                ?>
                 <input type="file" name="image" id="i"/></td>
                    
         </tr>
