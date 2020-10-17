@@ -26,5 +26,5 @@ $p=mysqli_num_rows($h);
     
     
      
-header('location:index.html');   
+header('location:index.html');
 }

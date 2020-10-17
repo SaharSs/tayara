@@ -25,8 +25,7 @@ while ($row2 = mysqli_fetch_assoc($r1)) {
     }
     }
     }
-
-$q = "select * from annonce where a_id='{$_SESSION['user']['id']}' and cas=1";
+$q = "select * from annonce where a_id='{$_SESSION['user']['id']}' AND cas=1";
 $s = mysqli_query($c, $q);
 $count = mysqli_num_rows($s);
 ?>
@@ -76,7 +75,7 @@ $count = mysqli_num_rows($s);
                 <td><?php echo $row['phone_number']; ?></td>
                 <td>
                 <?php
-               echo "<a href='app.php?id=".$row['id']."&aid=".$row['cas']."'>désactive</a>"
+               echo "<a href='app.php?id=".$row['id']."'>désactive</a>"
                ?>
 
         
@@ -158,4 +157,3 @@ $count = mysqli_num_rows($s1);
 <script src="../admin/js/bootstrap.min.js"></script>
 </body>
 </html>
-   
