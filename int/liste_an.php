@@ -26,7 +26,7 @@ while ($row2 = mysqli_fetch_assoc($r1)) {
     }
     }
 
-$q = "select * from annonce where a_id='{$_SESSION['user']['id']}'";
+$q = "select * from annonce where a_id='{$_SESSION['user']['id']}' AND cas=1";
 $s = mysqli_query($c, $q);
 $count = mysqli_num_rows($s);
 ?>
