@@ -75,7 +75,7 @@ $count = mysqli_num_rows($s);
                 <td><?php echo $row['phone_number']; ?></td>
                 <td>
                 <?php
-               echo "<a href='app.php?id=".$row['id']."&aid=".$row['cas']."'>désactive</a>"
+               echo "<a href='app.php?id=".$row['id']."'>désactive</a>"
                ?>
 
         
