@@ -142,14 +142,14 @@ $.fn.hSlides = function(settings) {
 				over: movePanels,
 				timeout: settings.timeout,
 				out: function() {}
-			}
+			};
 			var configHoverWrapper = {
 				sensitivity: settings.sensitivity,
 				interval: settings.interval,
 				over: function() {},
 				timeout: settings.timeout,
 				out: centerPanels
-			}
+			};
 			$(settings.panelSelector, wrapper).hoverIntent(configHoverPanel);
 			if (settings.midPanelWidth != 0){
 				$(wrapper).hoverIntent(configHoverWrapper);
