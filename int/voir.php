@@ -52,6 +52,7 @@ if (!isset($_SESSION['user']))
          $id=$_GET['id'];
          $q = "SELECT * FROM annonce where id=".$id;
          $r=mysqli_query($c,$q);
+            
          while($row = mysqli_fetch_assoc($r)){
          echo $row['titre'];
          $q1="select image from image_an where i_id=".$id;
@@ -63,42 +64,13 @@ if (!isset($_SESSION['user']))
          echo $row['texte_annonce']."<br>";
         echo $row['adresse']."<br>";
         echo $row['phone_number']."<br>";
+             $id_annonce_creator=$row['a_id']; 
+          
          }
         }
-        $q="select * from users where role='user' && id<>'{$_SESSION['user']['id']}'";
-$s=mysqli_query($c,$q);
-
-if(isset($_POST['envoyer']))
-{
-
-  if(isset($_POST['message']) && !empty($_POST['message'])) {
-                $u=$_POST['utl'];   
-                $m=$_POST['message'];
-                 $date = date('Y-m-d H:i:s');
-                 $q="insert into messages(r_id,sender_id,message,date) VALUES ('$u', '{$_SESSION['user']['id']}','$m','$date')";
-                 $l=mysqli_query($c,$q);
-                 }    
-}
-
-        
-        ?>
-         <form  action="" method="post">
-     
-<label for="na">utilisateurs</label>
-
-<select name="utl"  id="na">
-<?php    
-    while($row=mysqli_fetch_assoc($s))
-{
-  ?>
-    <option value='<?php   echo $row['id'];?>'><?php   echo $row['name'];?></option>
-            <?php
- 
-}
-
-?>
-    
-</select><br>
+        if($_SESSION['user']['id']!=$id_annonce_creator){?>
+        <form  action="" method="post">
+     <br>
 
   
          <label>message:</label>
@@ -108,6 +80,57 @@ if(isset($_POST['envoyer']))
         <input type="submit"  name="envoyer" />
         
       </form>
+        <?php
+            if(isset($_POST['envoyer']))
+{
+
+  if(isset($_POST['message']) && !empty($_POST['message'])) {
+                $u=$id_annonce_creator;   
+                $m=$_POST['message'];
+                 $date = date('Y-m-d H:i:s');
+                 $q="insert into messages(r_id,sender_id,message,an_id,date) VALUES ('$u', '{$_SESSION['user']['id']}','$m','$id','$date')";
+                 $l=mysqli_query($c,$q);
+                 }    
+}
+        }else{
+        ?>
+        <form  action="" method="post">
+     <br>
+
+  
+         <label>message:</label>
+         <br /><br />
+         <textarea placeholder="Votre message" name="message"></textarea>
+         <br /><br />
+        <input type="submit"  name="envoyer" />
+        
+      </form>
+        <?php
+      
+             if(isset($_POST['envoyer']))
+              {
+
+               if(isset($_POST['message']) && !empty($_POST['message'])) {
+                $u= ;   
+                $m=$_POST['message'];
+                 $date = date('Y-m-d H:i:s');
+                 $q="insert into messages(r_id,sender_id,message,an_id,date) VALUES ('', '{$_SESSION['user']['id']}','$m','$id','$date')";
+                 $l=mysqli_query($c,$q);
+                 }    
+                    }
+    $m="SELECT m.*,(
+    SELECT username from users where users.id = m.sender_id
+     )as username
+
+FROM  messages as m where (m.r_id='' and m.sender_id='{$_SESSION['user']['id']}') or (m.r_id='{$_SESSION['user']['id']}' and m.sender_id='')";
+$h=mysqli_query($c,$m);
+while($row1=mysqli_fetch_assoc($h))
+      {
+      echo $row1['username']." à dit : ".$row1['message'];    
+      }   
+    }
+        ?>
+         
 
         
            <script src="../admin/js/jquery.min.js"></script>
