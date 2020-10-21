@@ -22,11 +22,11 @@ if(isset($_POST['envoyer']))
 
 $sid = $_SESSION['user']['id'];
 $msg="SELECT m.*,(
-    SELECT username from users where users.id = m.sender_id
+    SELECT username from users where users.id = m.sender_id   
 )as username,
     (SELECT titre from annonce where annonce.id = m.an_id
 )as titre
-FROM messages as m where (m.r_id='$id' and m.sender_id='$sid') or (m.r_id='$sid' and m.sender_id='$id')";
+FROM messages as m where ((m.r_id='$id' and m.sender_id='$sid') or (m.r_id='$sid' and m.sender_id='$id')) and an_id='$an_id'";
 $h=mysqli_query($c,$msg);
     while($row1=mysqli_fetch_assoc($h))
             {
