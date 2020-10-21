@@ -102,7 +102,7 @@ if (!isset($_SESSION['user']))
     SELECT username from users where users.id = m.sender_id
      )as username
 
-FROM  messages as m where  m.r_id='{$_SESSION['user']['id']}'&& m.sender_id ='$id_annonce_creator' ";
+FROM  messages as m where  m.r_id='{$_SESSION['user']['id']}' ";
 $h=mysqli_query($c,$m);
 while($row1=mysqli_fetch_assoc($h))
  {
