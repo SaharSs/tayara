@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 15 oct. 2020 à 04:02
+-- Généré le :  mer. 21 oct. 2020 à 00:42
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `annonce` (
   `cas` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_a_id_id` (`a_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `annonce`
@@ -52,7 +52,8 @@ INSERT INTO `annonce` (`id`, `a_id`, `pid`, `titre`, `texte_annonce`, `prix`, `a
 (22, 1, 18, 'T-shirt', 'jkbkjkljkljhk', 50, 'doualy', 147896, '2020-10-14 16:51:15', 0),
 (23, 1, 2, 'modulation', 'jkbkjkljkljhk', 30, 'doualy', 1478945, '2020-10-14 16:51:35', 1),
 (24, 1, 2, 'modu', 'jkbkjkljkljhk', 30, 'doualy', 14785254, '2020-10-15 05:29:46', 1),
-(25, 1, 3, 'ty', 'jkbkjkljkljhk', 30, 'doualy', 14789, '2020-10-15 05:30:32', 1);
+(25, 1, 3, 'ty', 'jkbkjkljkljhk', 30, 'doualy', 14789, '2020-10-15 05:30:32', 1),
+(26, 2, 2, 'article ', 'jkbkjklj', 15000, 'doualy', 14789, '2020-10-20 17:09:02', 1);
 
 -- --------------------------------------------------------
 
@@ -116,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `image_an` (
   `i_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_image_an_i_id` (`i_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `image_an`
@@ -127,7 +128,9 @@ INSERT INTO `image_an` (`id`, `image`, `i_id`) VALUES
 (52, '58ad674a931b88a2307be96f8ae98a29.jpg', 23),
 (53, '7f01cc6eef067198b415908d5efdc286.jpg', 23),
 (54, '066c5e3ca1bc00c73b53039c7fa9ef01.jpg', 24),
-(55, 'e77686cdd76008a179da72c1dc21370e.jpg', 25);
+(55, 'e77686cdd76008a179da72c1dc21370e.jpg', 25),
+(56, '45179e736319fcf9beefba7e3c509f63.jpg', 26),
+(57, 'e6584c52d124efaa178c4534ddcf7fbf.PNG', 23);
 
 -- --------------------------------------------------------
 
@@ -157,25 +160,40 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `message` longtext DEFAULT NULL,
   `r_id` int(11) NOT NULL,
   `sender_id` int(11) NOT NULL,
+  `an_id` int(11) NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
-  KEY `FK_SENDER_ID` (`sender_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+  KEY `FK_SENDER_ID` (`sender_id`),
+  KEY `fk_im_id` (`an_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `messages`
 --
 
-INSERT INTO `messages` (`id`, `message`, `r_id`, `sender_id`, `date`) VALUES
-(1, 'bonjour', 11, 13, '2020-09-14 11:08:07'),
-(2, 'cv', 11, 13, '2020-09-14 11:09:04'),
-(12, 'hi', 3, 1, '2020-10-14 21:33:35'),
-(5, 'ahla', 13, 11, '2020-09-14 11:14:26'),
-(6, 'bien', 12, 11, '2020-09-14 11:15:11'),
-(7, 'kiol', 13, 10, '2020-09-14 11:27:07'),
-(8, 'hi', 10, 13, '2020-09-14 11:31:23'),
-(9, 'hi', 12, 10, '2020-09-14 11:35:00'),
-(13, 'cv\r\n', 1, 3, '2020-10-14 21:35:52');
+INSERT INTO `messages` (`id`, `message`, `r_id`, `sender_id`, `an_id`, `date`) VALUES
+(1, 'bonjour', 11, 13, 0, '2020-09-14 11:08:07'),
+(2, 'cv', 11, 13, 0, '2020-09-14 11:09:04'),
+(12, 'hi', 3, 1, 0, '2020-10-14 21:33:35'),
+(5, 'ahla', 13, 11, 0, '2020-09-14 11:14:26'),
+(6, 'bien', 12, 11, 0, '2020-09-14 11:15:11'),
+(7, 'kiol', 13, 10, 0, '2020-09-14 11:27:07'),
+(8, 'hi', 10, 13, 0, '2020-09-14 11:31:23'),
+(9, 'hi', 12, 10, 0, '2020-09-14 11:35:00'),
+(13, 'cv\r\n', 1, 3, 0, '2020-10-14 21:35:52'),
+(14, 'huhvjkjblk', 4, 1, 0, '2020-10-15 10:14:50'),
+(15, 'test du msg', 1, 2, 0, '2020-10-15 11:32:28'),
+(16, 'salut kl combien le prix de cet article?', 1, 2, 0, '2020-10-15 11:39:05'),
+(17, ',mjijnljlnk', 1, 2, 0, '2020-10-20 14:59:38'),
+(18, 'qkldqj', 1, 2, 0, '2020-10-20 15:05:43'),
+(19, 'uogvhhojnj', 1, 2, 0, '2020-10-20 15:10:00'),
+(20, 'pibjhjupoopk', 1, 2, 0, '2020-10-20 15:12:23'),
+(21, 'huhilop', 1, 2, 0, '2020-10-20 15:20:38'),
+(22, 'hvhuokl', 1, 2, 0, '2020-10-20 15:30:38'),
+(23, 'lhihoijk', 1, 2, 0, '2020-10-20 16:15:46'),
+(24, 'hubjkjkbkjkln', 1, 2, 0, '2020-10-20 16:16:26'),
+(25, 'ugyihuhkjkll', 1, 2, 0, '2020-10-20 16:17:14'),
+(26, 'saha', 1, 2, 23, '2020-10-20 19:21:30');
 
 -- --------------------------------------------------------
 
@@ -197,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `phone_number` int(11) NOT NULL,
   `role` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `users`
@@ -206,7 +224,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `etat`, `image`, `adresse`, `postcode`, `phone_number`, `role`) VALUES
 (1, 'kl', 'kl', 'kl', 'salk@gmail.com', 'v', 'default.png', 'dualy', 2100, 123456, 'user'),
 (2, 'ml', 'ml', 'ml', 'sd@gmail.com', 'v', '', 'doualy', 2100, 56486556, 'user'),
-(3, 'jh', 'jh', 'jh', 'ds@gmail.com', 'v', '', 'doualy', 2510, 513353, 'webmaster');
+(3, 'jh', 'jh', 'jh', 'ds@gmail.com', 'v', '', 'doualy', 2510, 513353, 'webmaster'),
+(4, 'nb', 'nb', 'nb', 'sd11@gmail.com', 'v', 'kd.png', 'doualy', 2100, 123456, 'user');
 
 -- --------------------------------------------------------
 
