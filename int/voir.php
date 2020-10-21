@@ -89,7 +89,10 @@ if (!isset($_SESSION['user']))
                 $m=$_POST['message'];
                  $date = date('Y-m-d H:i:s');
                  $q="insert into messages(r_id,sender_id,message,an_id,date) VALUES ('$u', '{$_SESSION['user']['id']}','$m','$id','$date')";
-                 $l=mysqli_query($c,$q);
+                 
+                  
+                  
+                  $l=mysqli_query($c,$q);
                  }    
                 }
             
@@ -113,6 +116,7 @@ if (!isset($_SESSION['user']))
 
    
         ?>
+        //ksks
          
 
         
