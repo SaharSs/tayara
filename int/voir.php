@@ -92,43 +92,24 @@ if (!isset($_SESSION['user']))
                  $l=mysqli_query($c,$q);
                  }    
 }
-        }else{
-        ?>
-        <form  action="" method="post">
-     <br>
+            
+    }
 
+        else{
   
-         <label>message:</label>
-         <br /><br />
-         <textarea placeholder="Votre message" name="message"></textarea>
-         <br /><br />
-        <input type="submit"  name="envoyer" />
-        
-      </form>
-        <?php
-      
-             if(isset($_POST['envoyer']))
-              {
 
-               if(isset($_POST['message']) && !empty($_POST['message'])) {
-                $u= ;   
-                $m=$_POST['message'];
-                 $date = date('Y-m-d H:i:s');
-                 $q="insert into messages(r_id,sender_id,message,an_id,date) VALUES ('', '{$_SESSION['user']['id']}','$m','$id','$date')";
-                 $l=mysqli_query($c,$q);
-                 }    
-                    }
     $m="SELECT m.*,(
     SELECT username from users where users.id = m.sender_id
      )as username
 
-FROM  messages as m where (m.r_id='' and m.sender_id='{$_SESSION['user']['id']}') or (m.r_id='{$_SESSION['user']['id']}' and m.sender_id='')";
+FROM  messages as m where  m.r_id='{$_SESSION['user']['id']}'&& m.sender_id ='$id_annonce_creator' ";
 $h=mysqli_query($c,$m);
 while($row1=mysqli_fetch_assoc($h))
-      {
-      echo $row1['username']." à dit : ".$row1['message'];    
-      }   
-    }
+ {
+      echo "<a href='mes.php?id=".$row1['sender_id']."&aid=".$row1['an_id']."'>" .$row1['username']."</a><br>";    
+ }
+}
+   
         ?>
          
 
