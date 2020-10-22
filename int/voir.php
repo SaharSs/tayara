@@ -98,7 +98,7 @@ if (!isset($_SESSION['user']))
         else{
   
 
-    $m="SELECT m.*,(
+    $m="SELECT distinct sender_id,an_id,m.*,(
     SELECT username from users where users.id = m.sender_id
      )as username
 
