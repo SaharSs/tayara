@@ -59,8 +59,8 @@ while ($row = mysqli_fetch_assoc($r)) {
 }else {
 	$num_an=2;
 		$q1="select id from annonce";
-$r1=mysqli_query($c,$q1);
-$annonce_t=mysqli_num_rows($r1);	
+$r2=mysqli_query($c,$q1);
+$annonce_t=mysqli_num_rows($r2);	
 $pagesTotales = ceil($annonce_t/$num_an);
 	if(isset($_GET['page']))
 	{
@@ -68,6 +68,8 @@ $pagesTotales = ceil($annonce_t/$num_an);
 	}else
 	{
 	$page=1;
+		
+		
 	}
 	
 	$depart=($page-1)*	$num_an;
