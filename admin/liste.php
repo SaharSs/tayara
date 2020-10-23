@@ -31,7 +31,7 @@ $s = mysqli_query($c, $q);
       <td><?php echo $row['cat'];?></td>
               <td>
           <a href="up1.php?id=<?=$row['id'];?>"><i class="fas fa-edit"></i></a>
-          <a href="delet_cat.php?id=<?=$row['id'];?>"><i class="fas fa-edit"></i></a>
+          <a href="delet_cat.php?id=<?=$row['id'];?>"><i class="fas fa-trash"></i></a>
           
         </td>  
      </tr>          
