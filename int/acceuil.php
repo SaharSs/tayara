@@ -63,7 +63,7 @@ if (!isset($_SESSION['user']))
 	$page=1;
 	}
 	 
-	 
+	 isset($_GET['rec'])
 	$q1="select id from annonce where titre LIKE '%".$m."%'";
 	 
     $r2=mysqli_query($c,$q1);
