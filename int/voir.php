@@ -85,17 +85,17 @@ if (!isset($_SESSION['user']))
                {
 
               if(isset($_POST['message']) && !empty($_POST['message'])) {
-                $u=$id_annonce_creator;   
+                $u=$id_annonce_creator;
                 $m=$_POST['message'];
                  $date = date('Y-m-d H:i:s');
                  $q="insert into messages(r_id,sender_id,message,an_id,date) VALUES ('$u', '{$_SESSION['user']['id']}','$m','$id','$date')";
-                 
-                  
-                  
+
+
+
                   $l=mysqli_query($c,$q);
-                 }    
+                 }
                 }
-            
+
     }
 
         else{
@@ -103,20 +103,19 @@ if (!isset($_SESSION['user']))
           SELECT  username from users where users.id = m.sender_id
           )as username
           FROM  messages as m where  m.r_id='{$_SESSION['user']['id']}' ";
-    
+
          $h=mysqli_query($c,$m);
          $n=mysqli_num_rows($h);
          while($row1=mysqli_fetch_assoc($h))
           {
-     
-           echo "<a href='mes.php?id=".$row1['sender_id']."&aid=".$row1['an_id']."'>" .$row1['username']."</a><br>";    
-         
+
+           echo "<a href='mes.php?id=".$row1['sender_id']."&aid=".$row1['an_id']."'>" .$row1['username']."</a><br>";
+
             }
            }
 
-   
+
         ?>
-        
          
 
         
