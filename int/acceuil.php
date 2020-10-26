@@ -56,7 +56,7 @@ if (!isset($_SESSION['user']))
 if (isset($_POST['rechercher']) AND !empty($_POST['recherche'])) {
 	 $m = htmlspecialchars($_POST['recherche']);
 	$num_an=2;
-		$q1="select id from annonce where titre='$m' ";
+		$q1="select id from annonce where titre LIKE '%".$m."%'";
 $r2=mysqli_query($c,$q1);
 $annonce_t=mysqli_num_rows($r2);	
 $pagesTotales = ceil($annonce_t/$num_an);
@@ -72,7 +72,7 @@ $pagesTotales = ceil($annonce_t/$num_an);
 	
 	$depart=($page-1)*	$num_an;
    
-    $q = "SELECT annonce.id,annonce.prix,(SELECT image FROM image_an WHERE i_id=annonce.id LIMIT 1)as image FROM annonce WHERE annonce.cas=1  AND annonce.titre LIKE '%".$m."%'  ";
+    $q = "SELECT annonce.id,annonce.prix,(SELECT image FROM image_an WHERE i_id=annonce.id LIMIT 1)as image FROM annonce WHERE annonce.cas=1  AND annonce.titre LIKE '%".$m."%'  limit $depart, $num_an";
     echo "Résultat de la recherche de : $m <a href='acceuil.php'>Annuler la recherche</a>";
 		$r = mysqli_query($c, $q);
 while ($row = mysqli_fetch_assoc($r)) {
