@@ -28,10 +28,13 @@ $msg="SELECT m.*,(
 )as titre
 FROM messages as m where ((m.r_id='$id' and m.sender_id='$sid') or (m.r_id='$sid' and m.sender_id='$id')) and an_id='$an_id'";
 $h=mysqli_query($c,$msg);
+   $row=mysqli_fetch_assoc($h);
+     echo $row['titre']."<br>";   
     while($row1=mysqli_fetch_assoc($h))
             {
-      echo $row1['username']." à dit :".$row1['message']." ".$row1['titre']."<br>" ;    
+            echo $row1['username']." à dit :".$row1['message']."<br>" ;    
             }
+    
     }
 
 ?>

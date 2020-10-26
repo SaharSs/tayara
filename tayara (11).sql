@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 21 oct. 2020 à 07:10
+-- Généré le :  mer. 21 oct. 2020 à 17:58
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   PRIMARY KEY (`id`),
   KEY `FK_SENDER_ID` (`sender_id`),
   KEY `fk_im_id` (`an_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `messages`
@@ -182,13 +182,18 @@ INSERT INTO `messages` (`id`, `message`, `r_id`, `sender_id`, `an_id`, `date`) V
 (7, 'kiol', 13, 10, 0, '2020-09-14 11:27:07'),
 (8, 'hi', 10, 13, 0, '2020-09-14 11:31:23'),
 (34, 'bon', 2, 1, 23, '2020-10-21 02:34:57'),
+(42, 'bvcxxd', 4, 1, 23, '2020-10-21 10:14:58'),
+(41, 'lkk', 4, 1, 23, '2020-10-21 10:14:44'),
+(40, 'fghb', 4, 1, 23, '2020-10-21 10:14:25'),
+(39, 'nb', 4, 1, 23, '2020-10-21 07:26:38'),
 (38, 'cv bien', 4, 1, 27, '2020-10-21 04:25:23'),
 (37, 'hi cv', 1, 4, 23, '2020-10-21 04:23:08'),
 (36, 'winik', 2, 1, 26, '2020-10-21 03:38:02'),
 (35, 'cvvv', 1, 4, 23, '2020-10-21 02:35:58'),
 (33, 'cv', 1, 2, 23, '2020-10-21 02:34:12'),
 (32, 'hi', 1, 2, 23, '2020-10-21 02:30:57'),
-(31, 'bonjour', 4, 1, 23, '2020-10-21 02:30:04');
+(31, 'bonjour', 4, 1, 23, '2020-10-21 02:30:04'),
+(43, 'bonjour', 1, 2, 23, '2020-10-21 13:15:21');
 
 -- --------------------------------------------------------
 
