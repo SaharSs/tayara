@@ -120,8 +120,10 @@ if (!isset($_SESSION['user']))
          $r=mysqli_query($c,$q);
             
          while($row = mysqli_fetch_assoc($r)){
-        
+         $id_annonce_creator=$row['a_id'];
+			 if($_SESSION['user']['id']!=$id_annonce_creator){
 		?>
+		
 <form action="chek.php" method="post">
 	<div class="form-group">
 
@@ -132,6 +134,7 @@ if (!isset($_SESSION['user']))
 </form>	
 		
 	<?php
+		 }
 		 }
 			 ?>
 
