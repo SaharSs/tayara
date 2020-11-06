@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 25 oct. 2020 à 22:26
+-- Généré le :  ven. 06 nov. 2020 à 00:29
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -51,12 +51,12 @@ CREATE TABLE IF NOT EXISTS `annonce` (
 INSERT INTO `annonce` (`id`, `a_id`, `pid`, `titre`, `texte_annonce`, `prix`, `adresse`, `phone_number`, `date`, `cas`) VALUES
 (22, 1, 18, 'T-shirt', 'jkbkjkljkljhk', 50, 'doualy', 147896, '2020-10-14 16:51:15', 0),
 (23, 1, 2, 'modulation', 'jkbkjkljkljhk', 30, 'doualy', 1478945, '2020-10-14 16:51:35', 1),
-(24, 1, 2, 'modu', 'jkbkjkljkljhk', 30, 'doualy', 14785254, '2020-10-15 05:29:46', 1),
-(25, 1, 3, 'ty', 'jkbkjkljkljhk', 30, 'doualy', 14789, '2020-10-15 05:30:32', 1),
+(24, 1, 2, 'ah', 'jkbkjkljkljhk', 30, 'doualy', 14785254, '2020-10-15 05:29:46', 1),
+(25, 1, 3, 'ah', 'jkbkjkljkljhk', 30, 'doualy', 14789, '2020-10-15 05:30:32', 1),
 (26, 2, 2, 'article ', 'jkbkjklj', 15000, 'doualy', 14789, '2020-10-20 17:09:02', 1),
 (27, 4, 3, 'modu', 'jkbkjkljkljhk', 30, 'doualy', 147852, '2020-10-21 06:22:14', 1),
-(28, 1, 7, 'mod', 'lk', 30000, 'doualy', 14789, '2020-10-23 11:49:32', 1),
-(29, 1, 3, 'modeee', 'jkbkjklhjbhh', 15000, 'doualy', 147896, '2020-10-23 11:54:00', 1);
+(28, 1, 7, 'ah', 'lk', 30000, 'doualy', 14789, '2020-10-23 11:49:32', 1),
+(29, 1, 3, 'jk', 'jkbkjklhjbhh', 15000, 'doualy', 147896, '2020-10-23 11:54:00', 1);
 
 -- --------------------------------------------------------
 
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `image_an` (
   `i_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_image_an_i_id` (`i_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `image_an`
@@ -137,7 +137,8 @@ INSERT INTO `image_an` (`id`, `image`, `i_id`) VALUES
 (58, '8826b69115dbfae587a9641be98bb4ad.jpg', 27),
 (59, '8cadb4c3cdad3647d962941316990391.jpg', 28),
 (60, '548d2cfc6e7cb3f343c808f669ab3a9d.jpg', 23),
-(61, '394f96920413b9679921d400eac91e1e.jpg', 29);
+(61, '394f96920413b9679921d400eac91e1e.jpg', 29),
+(62, '0ee7d30aa46cbd91d3132d8b5c0c1b2d.png', 28);
 
 -- --------------------------------------------------------
 

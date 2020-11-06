@@ -1,8 +1,8 @@
 <?php
 include "../admin/config/db.php";
 session_start();
-if (!isset($_SESSION['user']))
-    header('location:login_user.php');
+
+    
 
 ?>
 <html>
@@ -35,8 +35,11 @@ if (!isset($_SESSION['user']))
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?php
+						if (isset($_SESSION['user']))
+						{
                         echo "<img src='images/avatar/" . $_SESSION['user']['image'] . "' style='width:20px; border-radius:60%'/>";
                         echo $_SESSION['user']['name'];
+						}
                         ?>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -44,44 +47,54 @@ if (!isset($_SESSION['user']))
                         <a class="dropdown-item" href="login_user.php">connecté</a>
                     </div>
                 </li>
+			  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">panier
+                     </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">0produit</a>
+                        
+                    </div>
+                </li>		
             </ul>
         </div>
-    </div>
-</nav>
-<?php
-	 
-    if (isset($_POST['rechercher']) AND !empty($_POST['rechercher'])){
 	
-	$num="2";
-	$m =$_POST['recherche'];
+	
+	
+	</div>
+</nav>
+	
+<?php
+	
+   
+    if (isset($_POST['rechercher']) ){
+    $m =$_POST['recherche'];
+	$num=2;
 	if(isset($_GET['page']))
 	{
-	$page=$_GET['page'];	
+    $page=$_GET['page'];		
 	}
 	else
 	{
 	$page=1;
 	}
-	 
-	 isset($_GET['rec'])
-	$q1="select id from annonce where titre LIKE '%".$m."%'";
-	 
-    $r2=mysqli_query($c,$q1);
-	 $r3=mysqli_fetch_assoc($r2);
-    $annonce_t=mysqli_num_rows($r2);
-	 
-    $pagesTotales = ceil($annonce_t/$num);
-	
-	$depart=($page-1)*$num;
-	
+
+			$depart=($page-1)*$num;
+			 
     $q = "SELECT annonce.id,annonce.prix,(SELECT image FROM image_an WHERE i_id=annonce.id LIMIT 1)as image FROM       annonce WHERE annonce.cas=1  AND annonce.titre LIKE '%".$m."%'  limit $depart , $num ";
     echo "Résultat de la recherche de : $m <a href='acceuil.php'>Annuler la recherche</a>";
 	   $r = mysqli_query($c, $q);
 	 while ($row = mysqli_fetch_assoc($r)) {
         echo '<div class="text-center"><div><img src="images/avatar1/'. $row['image'].'" width="100" style="border-radius:50%"/></div><div><span>'.$row['prix'].'</span></div><div><a href="voir.php?id='.$row['id'].'">voir</a>
 		</div></div>';
-	 }
-	 
+	 } 
+	
+	$q2="select id from annonce where titre LIKE '%".$m."%'";
+    $r2=mysqli_query($c,$q2);
+	$annonce_t=mysqli_num_rows($r2);
+	$pagesTotales = ceil($annonce_t/$num);
+
+	
 	?>
 	
 <nav aria-label="Page navigation example">
@@ -105,25 +118,71 @@ if (!isset($_SESSION['user']))
 
 <?php
 	
-}
-	
-	
- 
-	else {
-	$num_an=2;
-$q1="select id from annonce";
-$r2=mysqli_query($c,$q1);
-$annonce_t=mysqli_num_rows($r2);	
-$pagesTotales = ceil($annonce_t/$num_an);
+}else if(isset($_GET['rec']))
+	{
+    $l=$_GET['rec'];
+	$num="2";
 	if(isset($_GET['page']))
 	{
-	$page=$_GET['page'];	
+    $page=$_GET['page'];		
+	}
+	else
+	{
+	$page=1;
+	}
+
+	$depart=($page-1)*$num;
+			 
+    $q = "SELECT annonce.id,annonce.prix,(SELECT image FROM image_an WHERE i_id=annonce.id LIMIT 1)as image FROM       annonce WHERE annonce.cas=1  AND annonce.titre LIKE '%".$l."%'  limit $depart , $num ";
+    echo "Résultat de la recherche de : $l <a href='acceuil.php'>Annuler la recherche</a>";
+	$r = mysqli_query($c, $q);
+	while ($row = mysqli_fetch_assoc($r)) {
+    echo '<div class="text-center"><div><img src="images/avatar1/'. $row['image'].'" width="100" style="border-radius:50%"/></div><div><span>'.$row['prix'].'</span></div><div><a href="voir.php?id='.$row['id'].'">voir</a>
+	</div></div>';
+	 } 
+	
+	$q2="select id from annonce where titre LIKE '%".$l."%'";
+    $r2=mysqli_query($c,$q2);
+	$annonce_t=mysqli_num_rows($r2);
+	$pagesTotales = ceil($annonce_t/$num);
+
+	
+	?>
+	
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="?page=<?php if($page-1>0) {echo $page-1 ;}else{echo '1';}?>&rec=<?php echo $l; ?>">Previous</a></li>
+	 <?php	
+    for($i=1;$i<=$pagesTotales;$i++)
+    {
+	?>
+    <li class="page-item"><a class="page-link"  href="?page=<?php echo $i;?>&rec=<?php echo $l; ?>">
+	<?= $i; ?></a></li>
+	<?php	
+	 }
+	
+	 
+?>
+    <li class="page-item"><a class="page-link" href="?page=<?php if( $page+1<$pagesTotales){echo $page+1 ;}elseif( $page+1>=$pagesTotales){echo $pagesTotales ;}?>&rec=<?php echo $l; ?>">Next</a></li>
+  </ul>
+</nav>
+	
+	
+	<?php
+		}
+else {
+	$num_an=2;
+		if(isset($_GET['page']))
+	{
+	$page=$_GET['page'];
 	}else
 	{
 	$page=1;
 	}
-	
-	$depart=($page-1)*	$num_an;
+		$depart=($page-1)*	$num_an;
+
+
+
 	
 	
     $q = "SELECT annonce.id,annonce.prix,(SELECT image FROM image_an WHERE i_id=annonce.id LIMIT 1)as image FROM annonce WHERE annonce.cas=1  limit $depart, $num_an ";
@@ -131,6 +190,13 @@ $pagesTotales = ceil($annonce_t/$num_an);
 while ($row = mysqli_fetch_assoc($r)) {
         echo '<div class="text-center"><div><img src="images/avatar1/'. $row['image'].'" width="100" style="border-radius:50%"/></div><div><span>'.$row['prix'].'</span></div><div><a href="voir.php?id='.$row['id'].'">voir</a></div></div>';
 }
+			
+$q1="select id from annonce";
+$r2=mysqli_query($c,$q1);
+$annonce_t=mysqli_num_rows($r2);	
+$pagesTotales = ceil($annonce_t/$num_an);
+
+
 	?>
 	<nav aria-label="Page navigation example">
      <ul class="pagination">
@@ -139,7 +205,7 @@ while ($row = mysqli_fetch_assoc($r)) {
 	 for($i=1;$i<=$pagesTotales;$i++)
       {
 	?>
-    <li class="page-item"><a class="page-link"  href="?page=<?php echo  $i ;?>"> <?= $i; ?></a></li>
+    <li class="page-item"><a class="page-link"  href="acceuil.php?page=<?php echo  $i ;?>"> <?= $i; ?></a></li>
 	<?php	  
 	  }
  ?>

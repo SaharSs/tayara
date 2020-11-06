@@ -46,6 +46,8 @@ if (!isset($_SESSION['user']))
      </div>
   </div>
 </nav>
+	
+
     <?php
         if(isset($_GET['id']))
         {
@@ -113,9 +115,27 @@ if (!isset($_SESSION['user']))
 
             }
            }
+		 $id=$_GET['id'];
+         $q = "SELECT * FROM annonce where id=".$id;
+         $r=mysqli_query($c,$q);
+            
+         while($row = mysqli_fetch_assoc($r)){
+        
+		?>
+<form action="chek.php" method="post">
+	<div class="form-group">
 
+<input type="hidden" name="produit"  value="<?php echo  $row['titre'];?>" class="form-control">
+<input type="hidden" name="id"  value="<?php echo  $row['id']; ?>" class="form-control">
+</div>
+<button type="submit" class="btn btn-primary">ajouter au panier</button>	
+</form>	
+		
+	<?php
+		 }
+			 ?>
 
-        ?>
+       
          
 
         
