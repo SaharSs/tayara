@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 06 nov. 2020 à 00:29
+-- Généré le :  sam. 21 nov. 2020 à 13:00
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -200,6 +200,37 @@ INSERT INTO `messages` (`id`, `message`, `r_id`, `sender_id`, `an_id`, `date`) V
 (32, 'hi', 1, 2, 23, '2020-10-21 02:30:57'),
 (31, 'bonjour', 4, 1, 23, '2020-10-21 02:30:04'),
 (43, 'bonjour', 1, 2, 23, '2020-10-21 13:15:21');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `payments`
+--
+
+DROP TABLE IF EXISTS `payments`;
+CREATE TABLE IF NOT EXISTS `payments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `amount` float(10,2) NOT NULL,
+  `currency` varchar(255) NOT NULL,
+  `payment_status` varchar(255) NOT NULL,
+  `captured_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `payments`
+--
+
+INSERT INTO `payments` (`id`, `amount`, `currency`, `payment_status`, `captured_at`) VALUES
+(1, 999.00, 'USD', 'Captured', '2020-11-08 23:50:23'),
+(2, 999.00, 'USD', 'Captured', '2020-11-08 23:52:19'),
+(3, 320.00, 'USD', 'Captured', '2020-11-08 23:57:06'),
+(4, 250.00, 'USD', 'Captured', '2020-11-08 23:58:54'),
+(5, 472.00, 'USD', 'Captured', '2020-11-09 00:01:12'),
+(6, 477.00, 'USD', 'Captured', '2020-11-09 00:04:18'),
+(7, 999.00, 'USD', 'Captured', '2020-11-09 03:10:58'),
+(8, 999.00, 'USD', 'Captured', '2020-11-09 03:10:58'),
+(9, 1250.00, 'USD', 'Captured', '2020-11-09 10:50:05');
 
 -- --------------------------------------------------------
 
