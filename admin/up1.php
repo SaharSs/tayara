@@ -25,12 +25,49 @@ if (isset($_POST['submit'])) {
     $r = mysqli_query($c, $s);
 }
 ?>
+
 <html>
-<head>
+    <head>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <title>acceuil</title>
-</head>
-<body>
+    <title>acceuil</title>   
+    </head>
+    <body>
+ <div class="container">
+        <nav id="navbar-example2" class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link" href="index.php">acceuil</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">mol</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><?php 
+          
+        echo "<img src='images/avatar/".$_SESSION['admin']['image']. "' style='width:20px; border-radius:60%'/>";
+     
+          
+          echo $_SESSION['admin']['name'];?></a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">modifier mon compte</a>
+        <a class="dropdown-item" href="queries/logout.php">se déconnecter</a>
+        </div>
+        
+    </li>
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">utilisateurs</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="gest_users.php">liste des utilisateurs</a>
+        <a class="dropdown-item" href="add_user.php">ajouter utilisateur</a>
+        </div>
+        
+    </li>
+  </ul>
+</nav>
+
+        </div>
+
 <form method="post" action="">
     <table>
         <tr>
